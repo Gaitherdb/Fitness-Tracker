@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const cardioRoutes = require('./cardioRoutes');
-const resistanceRoutes = require('./resistanceRoutes');
+const workoutRoutes = require('./workout');
+// const resistanceRoutes = require('./resistanceRoutes');
 
 
-router.use('/cardio', cardioRoutes);
-router.use('/resistance', resistanceRoutes);
+router.use('/workout', workoutRoutes);
+// router.use('/resistance', resistanceRoutes);
 
 
 
