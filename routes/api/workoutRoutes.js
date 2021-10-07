@@ -4,7 +4,16 @@ const app = express();
 
 const db = require("../../models");
 
-
+//create workout
+router.post("/", (req, res) => {
+  db.Workout.create(req.body)
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+});
 
 //getLastWorkout
 router.get("/", (req, res) => {
