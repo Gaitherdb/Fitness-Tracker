@@ -62,6 +62,25 @@ router.put("/:id", (req, res) => {
   );
 });
 
+//getWorkoutsInRange
+router.get("/range", (req, res) => {
+  db.Workout.aggregate([
+    {
+      $addFields: {
+        day: "$day",
+        totalDuration: {
+          $sum: "$exercises.duration"
+        }
+      }
+    }
+
+  ], (err, data) => {
+    res.json(data);
+  });
+  
+});
+
+
 
 
 module.exports = router;
