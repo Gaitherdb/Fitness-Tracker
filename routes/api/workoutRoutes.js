@@ -35,6 +35,33 @@ router.get("/", (req, res) => {
   });
 });
 
+//add exercise
+router.put("/:id", (req, res) => {
+  db.Workout.findOneAndUpdate(
+    {
+      _id: req.params.id
+    },
+    {
+      $push: {
+        exercises: req.body
+      }
+    },
+    { 
+      new: true
+    },
+
+    (error, edited) => {
+      if (error) {
+        console.log(error);
+        res.send(error);
+      } else {
+        console.log(edited);
+        res.send(edited);
+      }
+    }
+  );
+});
+
 
 
 module.exports = router;
