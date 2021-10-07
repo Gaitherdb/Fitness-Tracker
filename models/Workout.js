@@ -9,31 +9,33 @@ const workoutSchema = new Schema({
   },
   exercises: [
     {
-    type: {
-      type: String,
-      required: "Enter a name for type of exercise"
-    },
-    name: {
-      type: String,
-      required: "Enter a name for type of exercise"
-    },
-    duration: {
-      type: Number, 
-      required: "Enter an amount of time"
-    },
-    weight: {
-      type: Number,
+      type: Array
       
-    },
-    reps: {
-      type: Number,
-     
-    },
-    sets: {
-      type: Number,
-      
+      // {
+      //   type: String,
+      //   required: "Enter a name for type of exercise"
+      // },
+      // name: {
+      //   type: String,
+      //   required: "Enter a name for type of exercise"
+      // },
+      // duration: {
+      //   type: Number,
+      //   required: "Enter an amount of time"
+      // },
+      // distance: {
+      //   type: Number,
+      // },
+      // weight: {
+      //   type: Number,
+      // },
+      // reps: {
+      //   type: Number,
+      // },
+      // sets: {
+      //   type: Number,
+      // }
     }
-  }
   ],
 
 
