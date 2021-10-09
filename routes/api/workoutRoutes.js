@@ -6,6 +6,7 @@ const db = require("../../models");
 
 //create workout
 router.post("/", (req, res) => {
+  //create new instance of exercise field
   db.Workout.create(req.body)
     .then(dbWorkout => {
       res.json(dbWorkout);
@@ -18,12 +19,14 @@ router.post("/", (req, res) => {
 //getLastWorkout
 router.get("/", (req, res) => {
   db.Workout.aggregate([
-    {
+    {//sort by asc id - newest/last
       $sort: { _id: 1 }
     },
     {
       $addFields: {
+        //display the day field
         day: "$day",
+        //create new field finding the sum of the durations of this workout's exercises
         totalDuration: {
           $sum: "$exercises.duration"
         }
@@ -39,6 +42,7 @@ router.get("/", (req, res) => {
 router.put("/:id", (req, res) => {
   db.Workout.findOneAndUpdate(
     {
+      //find the workout with the saved id stored in the parameter
       _id: req.params.id
     },
     {
@@ -47,16 +51,17 @@ router.put("/:id", (req, res) => {
       }
     },
     { 
+      //create new instance of exercise field
       new: true
     },
 
-    (error, edited) => {
+    (error, edit) => {
       if (error) {
         console.log(error);
         res.send(error);
       } else {
-        console.log(edited);
-        res.send(edited);
+        console.log(edit);
+        res.send(edit);
       }
     }
   );
@@ -66,6 +71,7 @@ router.put("/:id", (req, res) => {
 router.get("/range", (req, res) => {
   db.Workout.aggregate([
     {
+      //retrieves all field data in an array to use for graph
       $addFields: {
         day: "$day",
         totalDuration: {
